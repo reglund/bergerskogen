@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Før og etter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a listening instrument. One big play control with a before/after switch that keeps your place in the morning; two lanes below show who sings when in each year. Dawn palette from the chorus page, the "after" lane in rust. */
+:root{
+  --night:#0d1420; --night-2:#141d2c; --rule:#26334a;
+  --ink:#ebe6da; --muted:#9aa4b8; --faint:#5d6882;
+  --before:#8fc39a; --after:#d4785c; --sun:#f2c06e;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+html{background:var(--night)}
+body{background:var(--night);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:920px;margin:0 auto;padding-block:52px 80px;display:flex;flex-direction:column;gap:44px}
+header,section{display:flex;flex-direction:column;gap:16px}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;line-height:1.05;text-wrap:balance}
+h1{font-size:clamp(46px,9vw,88px)}
+h1 .b{color:var(--before)} h1 .a{color:var(--after)}
+h2{font-size:clamp(26px,4.5vw,36px)}
+p{margin:0;max-width:66ch}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button{font:inherit;font-size:14px;background:var(--night-2);color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:6px 14px;cursor:pointer}
+.tabs button[aria-pressed="true"]{color:var(--ink);border-color:var(--sun)}
+.deck{display:flex;flex-direction:column;gap:18px;background:var(--night-2);border:1px solid var(--rule);border-radius:12px;padding:20px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.play{width:64px;height:64px;border-radius:50%;border:0;background:var(--sun);color:var(--night);cursor:pointer;display:grid;place-items:center;flex:none}
+.play svg{width:22px;height:22px;fill:currentColor}
+.switch{display:flex;border:1px solid var(--rule);border-radius:999px;padding:3px;gap:3px;background:var(--night)}
+.switch button{font:inherit;font-size:15px;border:0;border-radius:999px;padding:9px 16px;cursor:pointer;background:none;color:var(--muted);display:flex;flex-direction:column;align-items:flex-start;line-height:1.2}
+.switch button small{font-family:var(--mono);font-size:11px;color:inherit;opacity:.8}
+.switch button[data-v="for"][aria-pressed="true"]{background:var(--before);color:var(--night)}
+.switch button[data-v="etter"][aria-pressed="true"]{background:var(--after);color:var(--night)}
+.play:focus-visible,.switch button:focus-visible,.tabs button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.clock{font-family:var(--mono);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.clock b{color:var(--ink);font-weight:500;font-size:20px}
+.now{min-height:28px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.now span{font-size:14px;border-radius:999px;padding:2px 10px;background:var(--night);border:1px solid var(--rule)}
+.now .lbl{border:0;background:none;padding:0;color:var(--muted);font-family:var(--mono);font-size:12px}
+.lanes{width:100%;overflow-x:auto}
+.lanes svg{display:block;width:100%;min-width:600px;height:auto;cursor:pointer}
+svg text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.stat{border-top:2px solid var(--rule);padding-top:8px;display:flex;flex-direction:column;gap:2px}
+.stat.b{border-color:var(--before)} .stat.a{border-color:var(--after)}
+.stat b{font-family:var(--display);font-size:40px;font-weight:500;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
+.note{border-left:2px solid var(--sun);padding-left:14px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+footer{font-size:13px;color:var(--faint);border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+</style>
+</head>
+<body>
+<main>
+<a href="../" style="font-family:var(--mono,monospace);font-size:13px;color:var(--muted,#999);text-decoration:none">← Fuglene bak huset</a>
+<header>
+  <span class="eyebrow">Bergerskogen, Skjønhaug · samme vårmorgen, to år</span>
+  <h1>Hør skogen <span class="b">før</span> og <span class="a">etter</span></h1>
+  <p>Trykk på spill av, og bytt mellom årene mens morgenen går. Du blir stående på samme klokkeslett, så du hører forskjellen med en gang. Tre timer rundt soloppgang er pakket ned til to minutter.</p>
+</header>
+
+<section>
+  <div class="tabs" id="tabs" role="group" aria-label="Velg morgen"></div>
+  <div class="deck">
+    <div class="controls">
+      <button class="play" id="play" type="button" aria-label="Spill av"><svg viewBox="0 0 16 16" id="pi"><path d="M3.5 1.5v13l11-6.5z"/></svg></button>
+      <div class="switch" role="group" aria-label="Velg år" id="switch"></div>
+      <span class="clock" id="clock"></span>
+    </div>
+    <div class="now" id="now" aria-live="polite"></div>
+    <div class="lanes"><svg id="lanes" role="img" aria-label="Når hver art synger, før og etter"></svg></div>
+  </div>
+  <div class="stats" id="stats"></div>
+</section>
+
+<section>
+  <div class="note">
+    <p><b>Slik er lyden laget.</b> Fuglemikrofonen lagrer et klipp på rundt 10 sekunder hver gang den hører en fugl. Her er klippene fra morgenen lagt inn på det klokkeslettet fuglene sang, og komprimert i tid. Alt du hører er ekte lyd fra skogen bak huset, men satt sammen. Bare arter vi stoler på er tatt med, og hver art har sin faste plass mellom venstre og høyre høyttaler.</p>
+    <p class="muted">For å gjøre sammenligningen rettferdig er dagene valgt slik at morgenen var tørr og så stille som mulig begge årene. Byggestøy blir ikke lagret av fuglemikrofonen, så den er ikke med her.</p>
+  </div>
+</section>
+
+<footer><span id="foot"></span></footer>
+</main>
+<script>const FE={"par":[{"label":"Midten av mai","for":{"d":"2024-05-15","sr":"04:40","fra":"03:25","til":"06:25","mp3":"lyd/2024-05-15.mp3","tl":[{"t":6.91,"n":"Gråtrost","s":"Turdus pilaris","kl":"03:35","c":0.93},{"t":23.5,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:02","c":0.88},{"t":30.85,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"04:13","c":0.77},{"t":31.99,"n":"Fuglekonge","s":"Regulus regulus","kl":"04:15","c":0.86},{"t":46.44,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:38","c":0.98},{"t":47.45,"n":"Kjøttmeis","s":"Parus major","kl":"04:39","c":0.82},{"t":51.38,"n":"Svarttrost","s":"Turdus merula","kl":"04:46","c":0.7},{"t":52.01,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:47","c":0.97},{"t":55.56,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:52","c":0.9},{"t":58.98,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:58","c":0.94},{"t":63.03,"n":"Kjøttmeis","s":"Parus major","kl":"05:04","c":0.88},{"t":68.6,"n":"Ringdue","s":"Columba palumbus","kl":"05:13","c":0.78},{"t":71.9,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:18","c":0.92},{"t":73.29,"n":"Grønnspett","s":"Picus viridis","kl":"05:20","c":0.95},{"t":73.8,"n":"Ringdue","s":"Columba palumbus","kl":"05:21","c":0.82},{"t":76.64,"n":"Kjøttmeis","s":"Parus major","kl":"05:26","c":0.82},{"t":81.96,"n":"Ringdue","s":"Columba palumbus","kl":"05:34","c":0.84},{"t":83.73,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:37","c":0.99},{"t":87.66,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:43","c":0.99},{"t":89.94,"n":"Grønnfink","s":"Chloris chloris","kl":"05:47","c":0.86},{"t":93.1,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:52","c":0.98},{"t":93.1,"n":"Grønnfink","s":"Chloris chloris","kl":"05:52","c":0.89},{"t":97.1,"n":"Grønnfink","s":"Chloris chloris","kl":"05:58","c":0.99},{"t":99.18,"n":"Flaggspett","s":"Dendrocopos major","kl":"06:01","c":0.94},{"t":100.58,"n":"Gråtrost","s":"Turdus pilaris","kl":"06:03","c":0.87},{"t":106.79,"n":"Gråtrost","s":"Turdus pilaris","kl":"06:13","c":0.99},{"t":109.45,"n":"Grønnfink","s":"Chloris chloris","kl":"06:17","c":0.88},{"t":109.58,"n":"Ringdue","s":"Columba palumbus","kl":"06:18","c":0.79},{"t":109.83,"n":"Gråtrost","s":"Turdus pilaris","kl":"06:18","c":0.84},{"t":111.48,"n":"Kjøttmeis","s":"Parus major","kl":"06:21","c":0.8}],"arter":9,"regn":0.0,"vind":0.8},"etter":{"d":"2026-05-20","sr":"04:31","fra":"03:16","til":"06:16","mp3":"lyd/2026-05-20.mp3","tl":[{"t":7.83,"n":"Svarttrost","s":"Turdus merula","kl":"03:28","c":0.82},{"t":21.26,"n":"Rugde","s":"Scolopax rusticola","kl":"03:49","c":0.93},{"t":36.06,"n":"Fiskemåke","s":"Larus canus","kl":"04:13","c":0.97},{"t":58.17,"n":"Ringdue","s":"Columba palumbus","kl":"04:47","c":0.96},{"t":61.72,"n":"Ringdue","s":"Columba palumbus","kl":"04:53","c":0.77},{"t":64.76,"n":"Kjøttmeis","s":"Parus major","kl":"04:58","c":0.91},{"t":67.67,"n":"Gransanger","s":"Phylloscopus collybita","kl":"05:02","c":0.92},{"t":70.19,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:06","c":0.8},{"t":78.3,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:19","c":0.98},{"t":82.23,"n":"Spettmeis","s":"Sitta europaea","kl":"05:25","c":0.86},{"t":88.12,"n":"Skjære","s":"Pica pica","kl":"05:35","c":0.98},{"t":91.92,"n":"Skjære","s":"Pica pica","kl":"05:41","c":0.82},{"t":92.04,"n":"Grønnfink","s":"Chloris chloris","kl":"05:41","c":0.78},{"t":93.82,"n":"Gransanger","s":"Phylloscopus collybita","kl":"05:44","c":0.91},{"t":97.49,"n":"Grønnfink","s":"Chloris chloris","kl":"05:50","c":0.91},{"t":99.52,"n":"Ringdue","s":"Columba palumbus","kl":"05:53","c":0.88},{"t":106.61,"n":"Gransanger","s":"Phylloscopus collybita","kl":"06:04","c":0.94},{"t":108.68,"n":"Grønnfink","s":"Chloris chloris","kl":"06:07","c":0.78},{"t":111.17,"n":"Gransanger","s":"Phylloscopus collybita","kl":"06:11","c":0.93}],"arter":10,"regn":0.0,"vind":0.5}},{"label":"Begynnelsen av juni","for":{"d":"2024-06-11","sr":"03:56","fra":"02:41","til":"05:41","mp3":"lyd/2024-06-11.mp3","tl":[{"t":2.32,"n":"Gråtrost","s":"Turdus pilaris","kl":"02:45","c":0.87},{"t":8.66,"n":"Gråtrost","s":"Turdus pilaris","kl":"02:55","c":0.94},{"t":13.6,"n":"Rugde","s":"Scolopax rusticola","kl":"03:03","c":0.8},{"t":13.98,"n":"Svarttrost","s":"Turdus merula","kl":"03:03","c":0.78},{"t":15.62,"n":"Gråtrost","s":"Turdus pilaris","kl":"03:06","c":0.8},{"t":17.02,"n":"Svarttrost","s":"Turdus merula","kl":"03:08","c":0.92},{"t":21.96,"n":"Svarttrost","s":"Turdus merula","kl":"03:16","c":0.73},{"t":26.26,"n":"Svarttrost","s":"Turdus merula","kl":"03:23","c":0.73},{"t":27.66,"n":"Gråtrost","s":"Turdus pilaris","kl":"03:25","c":0.92},{"t":32.6,"n":"Svarttrost","s":"Turdus merula","kl":"03:33","c":0.7},{"t":39.82,"n":"Gråtrost","s":"Turdus pilaris","kl":"03:44","c":0.91},{"t":45.53,"n":"Gråtrost","s":"Turdus pilaris","kl":"03:53","c":0.71},{"t":48.69,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"03:58","c":0.71},{"t":56.29,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:10","c":0.83},{"t":67.19,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:27","c":0.92},{"t":70.48,"n":"Skogdue","s":"Columba oenas","kl":"04:33","c":0.72},{"t":78.59,"n":"Spettmeis","s":"Sitta europaea","kl":"04:45","c":0.75},{"t":79.73,"n":"Ringdue","s":"Columba palumbus","kl":"04:47","c":0.89},{"t":82.26,"n":"Møller","s":"Sylvia curruca","kl":"04:51","c":0.99},{"t":86.06,"n":"Møller","s":"Sylvia curruca","kl":"04:57","c":0.8},{"t":86.31,"n":"Ringdue","s":"Columba palumbus","kl":"04:58","c":0.91},{"t":86.95,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"04:59","c":0.91},{"t":90.11,"n":"Fuglekonge","s":"Regulus regulus","kl":"05:04","c":0.95},{"t":97.97,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:16","c":0.92},{"t":105.19,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:27","c":0.71},{"t":107.85,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"05:32","c":0.88},{"t":110.89,"n":"Spettmeis","s":"Sitta europaea","kl":"05:36","c":0.99},{"t":112.66,"n":"Gråtrost","s":"Turdus pilaris","kl":"05:39","c":0.87}],"arter":9,"regn":0.0,"vind":1.2},"etter":{"d":"2026-05-30","sr":"04:12","fra":"02:57","til":"05:57","mp3":"lyd/2026-05-30.mp3","tl":[{"t":12.21,"n":"Kjøttmeis","s":"Parus major","kl":"03:16","c":0.86},{"t":19.18,"n":"Kjøttmeis","s":"Parus major","kl":"03:27","c":0.8},{"t":42.99,"n":"Kjøttmeis","s":"Parus major","kl":"04:04","c":0.96},{"t":55.53,"n":"Jernspurv","s":"Prunella modularis","kl":"04:24","c":0.86},{"t":63.01,"n":"Gjerdesmett","s":"Troglodytes troglodytes","kl":"04:36","c":0.72},{"t":66.43,"n":"Kråke","s":"Corvus cornix","kl":"04:41","c":0.71},{"t":70.35,"n":"Gjerdesmett","s":"Troglodytes troglodytes","kl":"04:48","c":0.86},{"t":75.93,"n":"Grønnsisik","s":"Spinus spinus","kl":"04:56","c":0.95},{"t":76.05,"n":"Flaggspett","s":"Dendrocopos major","kl":"04:57","c":0.84},{"t":76.43,"n":"Gjerdesmett","s":"Troglodytes troglodytes","kl":"04:57","c":0.72},{"t":77.45,"n":"Gransanger","s":"Phylloscopus collybita","kl":"04:59","c":0.93},{"t":85.17,"n":"Munk","s":"Sylvia atricapilla","kl":"05:11","c":0.76},{"t":86.82,"n":"Grønnsisik","s":"Spinus spinus","kl":"05:14","c":0.85},{"t":93.53,"n":"Grønnfink","s":"Chloris chloris","kl":"05:24","c":0.98},{"t":99.62,"n":"Kråke","s":"Corvus cornix","kl":"05:34","c":0.78},{"t":100.76,"n":"Gjerdesmett","s":"Troglodytes troglodytes","kl":"05:36","c":0.77},{"t":102.03,"n":"Gransanger","s":"Phylloscopus collybita","kl":"05:38","c":0.94},{"t":108.94,"n":"Gjerdesmett","s":"Troglodytes troglodytes","kl":"05:49","c":0.88},{"t":110.01,"n":"Kråke","s":"Corvus cornix","kl":"05:50","c":0.72},{"t":110.26,"n":"Skjære","s":"Pica pica","kl":"05:51","c":0.98},{"t":113.56,"n":"Skjære","s":"Pica pica","kl":"05:56","c":0.97}],"arter":10,"regn":0.0,"vind":0.4}},{"label":"Slutten av juni","for":{"d":"2024-06-26","sr":"03:56","fra":"02:41","til":"05:41","mp3":"lyd/2024-06-26.mp3","tl":[{"t":5.14,"n":"Gråtrost","s":"Turdus pilaris","kl":"02:49","c":0.79},{"t":30.98,"n":"Svarttrost","s":"Turdus merula","kl":"03:30","c":0.77},{"t":34.92,"n":"Hagesanger","s":"Sylvia borin","kl":"03:36","c":0.93},{"t":61.39,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"04:18","c":0.93},{"t":62.66,"n":"Grankorsnebb","s":"Loxia curvirostra","kl":"04:20","c":0.81},{"t":62.91,"n":"Munk","s":"Sylvia atricapilla","kl":"04:20","c":0.81},{"t":80.39,"n":"Munk","s":"Sylvia atricapilla","kl":"04:48","c":0.83},{"t":85.33,"n":"Spettmeis","s":"Sitta europaea","kl":"04:56","c":0.81},{"t":85.46,"n":"Munk","s":"Sylvia atricapilla","kl":"04:56","c":0.83},{"t":88.5,"n":"Rødstjert","s":"Phoenicurus phoenicurus","kl":"05:01","c":0.71},{"t":91.66,"n":"Munk","s":"Sylvia atricapilla","kl":"05:06","c":0.71},{"t":93.06,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"05:08","c":0.99},{"t":96.98,"n":"Svarttrost","s":"Turdus merula","kl":"05:14","c":0.77},{"t":98.0,"n":"Trekryper","s":"Certhia familiaris","kl":"05:16","c":0.74},{"t":101.67,"n":"Ringdue","s":"Columba palumbus","kl":"05:22","c":0.86},{"t":110.29,"n":"Rødstjert","s":"Phoenicurus phoenicurus","kl":"05:35","c":0.77},{"t":113.46,"n":"Rødstjert","s":"Phoenicurus phoenicurus","kl":"05:40","c":0.72}],"arter":10,"regn":0.0,"vind":0.9},"etter":{"d":"2026-07-01","sr":"03:59","fra":"02:44","til":"05:44","mp3":"lyd/2026-07-01.mp3","tl":[{"t":4.7,"n":"Svarttrost","s":"Turdus merula","kl":"02:52","c":0.77},{"t":8.24,"n":"Gråtrost","s":"Turdus pilaris","kl":"02:57","c":0.97},{"t":16.48,"n":"Fuglekonge","s":"Regulus regulus","kl":"03:10","c":0.96},{"t":19.78,"n":"Fuglekonge","s":"Regulus regulus","kl":"03:16","c":0.9},{"t":23.33,"n":"Fuglekonge","s":"Regulus regulus","kl":"03:21","c":0.71},{"t":26.37,"n":"Fuglekonge","s":"Regulus regulus","kl":"03:26","c":0.78},{"t":28.01,"n":"Gråfluesnapper","s":"Muscicapa striata","kl":"03:29","c":0.8},{"t":34.47,"n":"Fiskemåke","s":"Larus canus","kl":"03:39","c":0.82},{"t":68.55,"n":"Grønnsisik","s":"Spinus spinus","kl":"04:33","c":0.94},{"t":73.11,"n":"Grønnsisik","s":"Spinus spinus","kl":"04:40","c":0.84},{"t":76.27,"n":"Gråtrost","s":"Turdus pilaris","kl":"04:45","c":0.89},{"t":82.1,"n":"Hagesanger","s":"Sylvia borin","kl":"04:54","c":0.92},{"t":90.6,"n":"Rødstrupe","s":"Erithacus rubecula","kl":"05:07","c":0.97},{"t":91.23,"n":"Gjerdesmett","s":"Troglodytes troglodytes","kl":"05:08","c":0.73},{"t":97.31,"n":"Blåmeis","s":"Cyanistes caeruleus","kl":"05:18","c":0.76},{"t":98.56,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"05:20","c":0.96},{"t":105.4,"n":"Kjernebiter","s":"Coccothraustes coccothraustes","kl":"05:31","c":0.85},{"t":106.16,"n":"Rødstrupe","s":"Erithacus rubecula","kl":"05:32","c":0.89}],"arter":11,"regn":0.0,"vind":0.5}}],"for":"2024","etter":"2026","varighet":120,"vindu":[-75,105]};
+const MON=['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'];
+const fd=d=>{const[y,m,dd]=d.split('-');return `${+dd}. ${MON[+m-1]} ${y}`;};
+const DUR=FE.varighet, [W0,W1]=FE.vindu;
+let pi=0, side='for', playing=false;
+const au={for:new Audio(), etter:new Audio()};
+Object.values(au).forEach(a=>{a.preload='auto';});
+const $=s=>document.getElementById(s);
+
+function realClock(t,p){ // t sekunder i montasjen -> klokkeslett den morgenen
+  const [h,m]=p[side].sr.split(':').map(Number), sr=h*60+m;
+  const min=sr+W0+(t/DUR)*(W1-W0), hh=Math.floor(min/60), mm=Math.floor(min%60);
+  const rel=Math.round(W0+(t/DUR)*(W1-W0));
+  return `<b>${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}</b> · ${rel===0?'soloppgang':(rel<0?'−':'+')+Math.abs(rel)+' min'}`;
+}
+function load(i){
+  const p=FE.par[i]; pi=i; stop(); 
+  au.for.src=p.for.mp3; au.etter.src=p.etter.mp3;
+  $('tabs').querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-pressed',String(k===i)));
+  $('switch').innerHTML=['for','etter'].map(v=>`<button type="button" data-v="${v}" aria-pressed="${v===side}">${v==='for'?'Før ryddingen':'Etter'}<small>${fd(p[v].d)}</small></button>`).join('');
+  drawLanes(); stats(); tick();
+}
+function stats(){
+  const p=FE.par[pi], c=v=>new Set(p[v].tl.map(x=>x.s)).size;
+  const lost=[...new Set(p.for.tl.map(x=>x.n))].filter(n=>!p.etter.tl.some(x=>x.n===n));
+  const gained=[...new Set(p.etter.tl.map(x=>x.n))].filter(n=>!p.for.tl.some(x=>x.n===n));
+  $('stats').innerHTML=
+    `<div class="stat b"><b>${c('for')}</b><span>arter ${fd(p.for.d)} · ${p.for.tl.length} klipp</span></div>`+
+    `<div class="stat a"><b>${c('etter')}</b><span>arter ${fd(p.etter.d)} · ${p.etter.tl.length} klipp</span></div>`+
+    `<div class="stat"><span>Bare før: ${lost.length?lost.join(', '):'ingen'}</span><span>Bare etter: ${gained.length?gained.join(', '):'ingen'}</span></div>`;
+}
+const X0=110, X1=900, LH=86;
+const xs=t=>X0+t/DUR*(X1-X0);
+function drawLanes(){
+  const p=FE.par[pi], svg=$('lanes'), H=30+2*LH;
+  svg.setAttribute('viewBox',`0 0 920 ${H}`);
+  let s='';
+  for(let r=W0;r<=W1;r+=30){ const t=(r-W0)/(W1-W0)*DUR; s+=`<line x1="${xs(t)}" x2="${xs(t)}" y1="18" y2="${H}" stroke="var(--rule)" stroke-width="${r===0?1.5:1}" ${r===0?'stroke-dasharray="3 4"':''}/><text x="${xs(t)}" y="12" text-anchor="middle">${r===0?'soloppgang':(r>0?'+':'−')+Math.abs(r)}</text>`; }
+  ['for','etter'].forEach((v,k)=>{
+    const y0=26+k*LH, col=v==='for'?'var(--before)':'var(--after)';
+    s+=`<text x="0" y="${y0+LH/2}" style="fill:${col}">${p[v].d.slice(0,4)}</text>`;
+    const names=[...new Set(p[v].tl.map(x=>x.n))], row=n=>names.indexOf(n)%6;
+    p[v].tl.forEach(x=>{ const y=y0+8+row(x.n)*12;
+      s+=`<rect x="${xs(x.t)}" y="${y}" width="${(6/DUR)*(X1-X0)}" height="8" rx="3" fill="${col}" opacity=".75"><title>${x.n} kl. ${x.kl} (${Math.round(x.c*100)} %)</title></rect>`; });
+  });
+  s+=`<line id="ph" x1="${X0}" x2="${X0}" y1="18" y2="${H}" stroke="var(--sun)" stroke-width="2"/>`;
+  svg.innerHTML=s;
+}
+function cur(){return au[side].currentTime||0;}
+function tick(){
+  const p=FE.par[pi], t=cur();
+  const ph=$('ph'); if(ph){ph.setAttribute('x1',xs(t));ph.setAttribute('x2',xs(t));}
+  $('clock').innerHTML=realClock(t,p);
+  const now=[...new Set(p[side].tl.filter(x=>x.t<=t&&t<x.t+6).map(x=>x.n))];
+  $('now').innerHTML=`<span class="lbl">Synger nå:</span>`+(now.length?now.map(n=>`<span>${n}</span>`).join(''):'<span class="lbl">stille</span>');
+  if(playing) requestAnimationFrame(tick);
+}
+function setIcon(){ $('pi').innerHTML=playing?'<path d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/>':'<path d="M3.5 1.5v13l11-6.5z"/>'; $('play').setAttribute('aria-label',playing?'Pause':'Spill av'); }
+function play(){ au[side].play().then(()=>{playing=true;setIcon();tick();}).catch(()=>{}); }
+function stop(){ Object.values(au).forEach(a=>a.pause()); playing=false; setIcon(); }
+function swap(v){
+  if(v===side) return;
+  const t=cur(), was=playing; au[side].pause(); side=v;
+  $('switch').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===v)));
+  try{au[side].currentTime=t;}catch(e){}
+  if(was) play(); else tick();
+}
+$('play').addEventListener('click',()=>playing?stop():play());
+$('switch').addEventListener('click',e=>{const b=e.target.closest('button'); if(b) swap(b.dataset.v);});
+$('lanes').addEventListener('click',e=>{ const r=$('lanes').getBoundingClientRect(), x=(e.clientX-r.left)/r.width*920, t=Math.max(0,Math.min(DUR-0.1,(x-X0)/(X1-X0)*DUR)); Object.values(au).forEach(a=>{try{a.currentTime=t;}catch(_){}}); tick(); });
+au.for.addEventListener('ended',()=>{playing=false;setIcon();}); au.etter.addEventListener('ended',()=>{playing=false;setIcon();});
+document.addEventListener('keydown',e=>{ if(e.target.closest('button')&&e.key===' ') return; if(e.key===' '){e.preventDefault();playing?stop():play();} if(e.key==='ArrowLeft'||e.key==='1') swap('for'); if(e.key==='ArrowRight'||e.key==='2') swap('etter'); });
+$('tabs').innerHTML=FE.par.map((p,i)=>`<button type="button" aria-pressed="${i===0}" data-i="${i}">${p.label}</button>`).join('');
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button'); if(b) load(+b.dataset.i);});
+$('foot').textContent=`Før: ${FE.for}, før ryddingen av Bergerskogen ved Skjønhaug (estimert vinteren 2024/25). Etter: ${FE.etter}. Lyd fra egen BirdNET-Pi. Tips: mellomrom spiller av og pauser, piltastene bytter år.`;
+load(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Nyttårsaften for fuglene</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column. Four horizontal "night strips" (20:00–04:00), one per New Year's Eve, with a mark per detection; click a mark to hear it. Committed dark: it is midnight. */
+:root{
+  --night:#0d1220; --night-2:#141b2e; --rule:#28324a;
+  --ink:#ece7dc; --muted:#9aa3b8; --faint:#5e6884;
+  --spark:#f2c14e; --flare:#e8684a; --frost:#9fd3e6; --owl:#e2a54c;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+html{background:var(--night)}
+body{background:var(--night);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:900px;margin:0 auto;padding-block:52px 80px;display:flex;flex-direction:column;gap:60px}
+header,section{display:flex;flex-direction:column;gap:16px}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;line-height:1.05;text-wrap:balance}
+h1{font-size:clamp(44px,9vw,84px)}
+h1 em{color:var(--spark)}
+h2{font-size:clamp(28px,5vw,40px)}
+p{margin:0;max-width:66ch}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tally{display:flex;flex-wrap:wrap;gap:24px 40px}
+.tally div{display:flex;flex-direction:column}
+.tally b{font-family:var(--display);font-size:52px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.tally span{font-size:13px;color:var(--muted)}
+.t-tt b{color:var(--spark)} .t-sn b{color:var(--frost)} .t-ot b{color:var(--muted)}
+.nights{display:flex;flex-direction:column;gap:22px}
+.night{display:flex;flex-direction:column;gap:6px}
+.night-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.night-head h3{margin:0;font-family:var(--display);font-weight:500;font-size:26px}
+.night-head span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.strip{position:relative;height:64px;border-radius:6px;background:linear-gradient(90deg,var(--night-2),#1a2340 50%,var(--night-2));border:1px solid var(--rule)}
+.strip .mid{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--flare);left:50%;transform:translateX(-1px)}
+.strip .tick{position:absolute;bottom:-20px;font-family:var(--mono);font-size:11px;color:var(--faint);transform:translateX(-50%)}
+.mark{position:absolute;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;border:0;padding:0;cursor:pointer;background:var(--spark);box-shadow:0 0 12px var(--spark)}
+.mark.sn{background:var(--frost);box-shadow:0 0 12px var(--frost)}
+.mark.ot{background:var(--muted);box-shadow:none}
+.mark.nosound{opacity:.45;cursor:default}
+.mark:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.mark.playing{animation:burst .7s ease-out infinite alternate}
+@keyframes burst{to{transform:scale(1.5)}}
+.player{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;background:var(--night-2);border:1px solid var(--rule);border-radius:10px;padding:14px}
+.player img{width:100%;height:auto;border-radius:4px;display:block;max-width:100%}
+.player .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.player .row b{color:var(--ink);font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.why div{display:flex;flex-direction:column;gap:6px}
+.why h3{margin:0;font-family:var(--display);font-weight:500;font-size:24px}
+footer{font-size:13px;color:var(--faint);border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+@media (prefers-reduced-motion:reduce){.mark.playing{animation:none}}
+</style>
+</head>
+<body>
+<main>
+<a href="../" style="font-family:var(--mono,monospace);font-size:13px;color:var(--muted,#999);text-decoration:none">← Fuglene bak huset</a>
+<header>
+  <span class="eyebrow">BirdNET-Pi · 31. desember kl. 20 – 1. januar kl. 04 · fire nyttår</span>
+  <h1>Hvert nyttår kommer det en <em>sjelden spett</em> på besøk</h1>
+  <p>Fuglemikrofonen på husveggen lytter nyttårsaften også. Klokka tolv eksploderer himmelen, og BirdNET gjør sitt beste for å forstå hva det hører. Det tror det hører en tretåspett, en sjelden og rødlistet skogspett, og noen ganger en snøugle fra fjellet.</p>
+  <div class="tally" id="tally"></div>
+</header>
+
+<section>
+  <span class="eyebrow">Fire nyttårsnetter</span>
+  <h2>Trykk på et smell for å høre det</h2>
+  <div class="legend"><span><i style="background:var(--spark)"></i>«tretåspett»</span><span><i style="background:var(--frost)"></i>«snøugle»</span><span><i style="background:var(--muted)"></i>annet</span><span><i style="background:var(--flare);border-radius:1px;width:3px"></i>midnatt</span></div>
+  <div class="nights" id="nights"></div>
+  <div class="player" id="player">
+    <img id="pimg" alt="Spektrogram av valgt lydklipp" src="">
+    <div class="row"><span id="pwhat">Velg et smell over for å høre det.</span><span id="pconf"></span></div>
+  </div>
+  <p class="muted">Spektrogrammet viser lyden som et bilde, med tid bortover og tonehøyde oppover. Fyrverkeri gir loddrette striper, fordi hvert smell inneholder alle frekvenser på én gang, etterfulgt av en lav rumling.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Hvorfor akkurat en spett?</span>
+  <h2>Slik «hører» en maskin fyrverkeri</h2>
+  <div class="why">
+    <div><h3>Tromming</h3><p class="muted">Spetter trommer med nebbet mot en stamme. Det gir en rask rekke korte, harde slag som dekker mange frekvenser, akkurat som knitrende fyrverkeri. Tretåspettens tromming er litt langsommere og lengre enn flaggspettens, og passer dermed godt til en serie smell.</p></div>
+    <div><h3>Dype drønn</h3><p class="muted">Snøugla har dype, gjøende rop. Når store bomber smeller langt unna, blir det bare den lave rumlingen som når mikrofonen, og den ligner nok for modellen.</p></div>
+    <div><h3>Ingen fugler å sammenligne med</h3><p class="muted">BirdNET er trent på fuglelyd og må alltid velge noe. Den har ikke noe svar for fyrverkeri, så den velger den fuglen som ligner minst dårlig.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Og ugla?</span>
+  <h2>Kattugla tier, men det gjør den ofte i romjula uansett</h2>
+  <p>Ingen av de fire nyttårsnettene har kattugle mellom kl. 20 og 04. Det er fristende å tenke at fyrverkeriet skremmer den, men kattugla er stille på mange romjulsnetter også. Noen netter roper den mye, andre netter ikke i det hele tatt. Fire nyttår er for lite til å si at det er fyrverkeriet.</p>
+  <p class="muted" id="quiet"></p>
+</section>
+
+<footer>
+  <span>Kilde: egne BirdNET-Pi-deteksjoner med konfidens 0,7 eller mer. Lydklippene er hentet fra Pi-en. Fra nyttåret 2022/23 er klippene slettet, så de vises uten lyd.</span>
+</footer>
+</main>
+<script>const EV=[{"y":2022,"t":"2022-12-31T20:23:52","n":"Tretåspett","c":0.775,"d":"2022-12-31","clip":null},{"y":2022,"t":"2022-12-31T23:49:54","n":"Perleugle","c":0.757,"d":"2022-12-31","clip":null},{"y":2022,"t":"2022-12-31T23:54:39","n":"Tretåspett","c":0.832,"d":"2022-12-31","clip":null},{"y":2022,"t":"2022-12-31T23:56:54","n":"Snøugle","c":0.729,"d":"2022-12-31","clip":null},{"y":2022,"t":"2023-01-01T00:14:24","n":"Tretåspett","c":0.792,"d":"2023-01-01","clip":null},{"y":2022,"t":"2023-01-01T01:31:55","n":"Tretåspett","c":0.768,"d":"2023-01-01","clip":null},{"y":2023,"t":"2023-12-31T20:42:54","n":"Tretåspett","c":0.81,"d":"2023-12-31","clip":"clips/20231231T204254-81.mp3"},{"y":2023,"t":"2023-12-31T21:31:25","n":"Snøugle","c":0.883,"d":"2023-12-31","clip":"clips/20231231T213125-88.mp3"},{"y":2023,"t":"2023-12-31T22:31:56","n":"Tretåspett","c":0.741,"d":"2023-12-31","clip":"clips/20231231T223156-74.mp3"},{"y":2023,"t":"2023-12-31T22:51:56","n":"Tretåspett","c":0.846,"d":"2023-12-31","clip":"clips/20231231T225156-85.mp3"},{"y":2023,"t":"2023-12-31T23:47:41","n":"Tretåspett","c":0.883,"d":"2023-12-31","clip":"clips/20231231T234741-88.mp3"},{"y":2023,"t":"2023-12-31T23:47:56","n":"Tretåspett","c":0.788,"d":"2023-12-31","clip":"clips/20231231T234756-79.mp3"},{"y":2023,"t":"2023-12-31T23:55:41","n":"Tretåspett","c":0.806,"d":"2023-12-31","clip":"clips/20231231T235541-81.mp3"},{"y":2023,"t":"2024-01-01T00:11:56","n":"Snøugle","c":0.729,"d":"2024-01-01","clip":"clips/20240101T001156-73.mp3"},{"y":2023,"t":"2024-01-01T00:12:41","n":"Tretåspett","c":0.701,"d":"2024-01-01","clip":"clips/20240101T001241-70.mp3"},{"y":2023,"t":"2024-01-01T00:16:12","n":"Tretåspett","c":0.768,"d":"2024-01-01","clip":"clips/20240101T001612-77.mp3"},{"y":2023,"t":"2024-01-01T00:16:26","n":"Tretåspett","c":0.7,"d":"2024-01-01","clip":"clips/20240101T001626-70.mp3"},{"y":2023,"t":"2024-01-01T00:18:12","n":"Tretåspett","c":0.832,"d":"2024-01-01","clip":"clips/20240101T001812-83.mp3"},{"y":2023,"t":"2024-01-01T00:21:27","n":"Tretåspett","c":0.734,"d":"2024-01-01","clip":"clips/20240101T002127-73.mp3"},{"y":2023,"t":"2024-01-01T00:23:42","n":"Tretåspett","c":0.707,"d":"2024-01-01","clip":"clips/20240101T002342-71.mp3"},{"y":2023,"t":"2024-01-01T00:23:56","n":"Tretåspett","c":0.821,"d":"2024-01-01","clip":"clips/20240101T002356-82.mp3"},{"y":2024,"t":"2024-12-31T20:35:28","n":"Tretåspett","c":0.723,"d":"2024-12-31","clip":"clips/20241231T203528-72.mp3"},{"y":2024,"t":"2024-12-31T20:49:28","n":"Tretåspett","c":0.708,"d":"2024-12-31","clip":"clips/20241231T204928-71.mp3"},{"y":2024,"t":"2024-12-31T22:11:47","n":"Tretåspett","c":0.713,"d":"2024-12-31","clip":"clips/20241231T221147-71.mp3"},{"y":2024,"t":"2024-12-31T23:19:39","n":"Tretåspett","c":0.746,"d":"2024-12-31","clip":"clips/20241231T231939-75.mp3"},{"y":2024,"t":"2025-01-01T00:02:03","n":"Tretåspett","c":0.7,"d":"2025-01-01","clip":"clips/20250101T000203-70.mp3"},{"y":2024,"t":"2025-01-01T00:05:03","n":"Tretåspett","c":0.722,"d":"2025-01-01","clip":"clips/20250101T000503-72.mp3"},{"y":2024,"t":"2025-01-01T00:08:03","n":"Snøugle","c":0.918,"d":"2025-01-01","clip":"clips/20250101T000803-92.mp3"},{"y":2024,"t":"2025-01-01T00:11:15","n":"Tretåspett","c":0.923,"d":"2025-01-01","clip":"clips/20250101T001115-92.mp3"},{"y":2024,"t":"2025-01-01T00:14:39","n":"Tretåspett","c":0.75,"d":"2025-01-01","clip":"clips/20250101T001439-75.mp3"},{"y":2024,"t":"2025-01-01T00:14:51","n":"Tretåspett","c":0.708,"d":"2025-01-01","clip":"clips/20250101T001451-71.mp3"},{"y":2025,"t":"2025-12-31T20:05:37","n":"Svartspett","c":0.748,"d":"2025-12-31","clip":"clips/20251231T200537-75.mp3"},{"y":2025,"t":"2026-01-01T00:01:03","n":"Tretåspett","c":0.72,"d":"2026-01-01","clip":"clips/20260101T000103-72.mp3"}];
+const OWL={"2022": [1, 44, 0, 3, 1, 2, 18], "2023": [0, 80, 1, 0, 0, 0, 2], "2024": [13, 0, 2, 0, 1, 0, 0], "2025": [0, 1, 0, 3, 0, 0, 0]};
+const YEARS = Object.keys(OWL).map(Number).sort();
+const cls = n => n==='Tretåspett' ? '' : n==='Snøugle' ? 'sn' : 'ot';
+const tally = {}; EV.forEach(e => tally[e.n] = (tally[e.n]||0)+1);
+const others = Object.entries(tally).filter(([n])=>n!=='Tretåspett'&&n!=='Snøugle').reduce((a,[,v])=>a+v,0);
+document.getElementById('tally').innerHTML =
+  `<div class="t-tt"><b>${tally['Tretåspett']||0}</b><span>«tretåspetter»</span></div>`+
+  `<div class="t-sn"><b>${tally['Snøugle']||0}</b><span>«snøugler»</span></div>`+
+  `<div class="t-ot"><b>${others}</b><span>andre (perleugle, svartspett)</span></div>`;
+
+const start = y => Date.UTC(y,11,31,20), span = 8*3600e3;
+const toMs = s => { const [d,t] = s.split('T'), [Y,M,D] = d.split('-').map(Number), [h,m,sec] = t.split(':').map(Number); return Date.UTC(Y,M-1,D,h,m,sec); };
+document.getElementById('nights').innerHTML = YEARS.map(y => {
+  const ev = EV.filter(e => e.y === y);
+  const ticks = [20,22,0,2,4].map((h,i)=>`<span class="tick" style="left:${i*25}%">${String(h).padStart(2,'0')}:00</span>`).join('');
+  const marks = ev.map((e,i) => { const p = (toMs(e.t)-start(y))/span*100; const tm = e.t.slice(11,16);
+    return `<button class="mark ${cls(e.n)} ${e.clip?'':'nosound'}" style="left:${p.toFixed(2)}%" data-k="${EV.indexOf(e)}" type="button" aria-label="${e.n} kl. ${tm}${e.clip?'':' (lyd slettet)'}" title="${e.n} kl. ${tm}"></button>`; }).join('');
+  return `<div class="night"><div class="night-head"><h3>${y}/${String(y+1).slice(2)}</h3><span>${ev.length} registreringer</span></div>
+    <div class="strip"><span class="mid"></span>${marks}${ticks}</div></div>`;
+}).join('') ;
+document.querySelectorAll('.strip').forEach(s => s.style.marginBottom = '18px');
+
+const audio = new Audio(); let cur = null;
+function select(btn){
+  const e = EV[+btn.dataset.k];
+  document.querySelectorAll('.mark.playing').forEach(m => m.classList.remove('playing'));
+  document.getElementById('pwhat').innerHTML = `<b>${e.n}</b> · ${e.t.slice(8,10)}.${e.t.slice(5,7)}.${e.t.slice(0,4)} kl. ${e.t.slice(11,19)}`;
+  document.getElementById('pconf').textContent = `BirdNET var ${Math.round(e.c*100)} % sikker`;
+  if (!e.clip) { document.getElementById('pimg').removeAttribute('src'); document.getElementById('pwhat').innerHTML += ' · lydklippet er slettet fra Pi-en'; audio.pause(); return; }
+  document.getElementById('pimg').src = e.clip.replace('clips/','spek/').replace('.mp3','.webp');
+  audio.src = e.clip; cur = btn; btn.classList.add('playing');
+  audio.play().catch(()=>{ btn.classList.remove('playing'); });
+}
+audio.addEventListener('ended', () => cur && cur.classList.remove('playing'));
+audio.addEventListener('pause', () => cur && cur.classList.remove('playing'));
+document.getElementById('nights').addEventListener('click', e => { const b = e.target.closest('.mark'); if (b) select(b); });
+// preselect the loudest-looking one without autoplay
+const first = EV.findIndex(e => e.clip && e.n==='Tretåspett' && e.c > .9);
+if (first >= 0) { const e = EV[first]; document.getElementById('pimg').src = e.clip.replace('clips/','spek/').replace('.mp3','.webp');
+  document.getElementById('pwhat').innerHTML = `<b>${e.n}</b> · 1. januar ${e.t.slice(0,4)} kl. ${e.t.slice(11,19)} · trykk på et smell for å spille av`;
+  document.getElementById('pconf').textContent = `BirdNET var ${Math.round(e.c*100)} % sikker`; }
+document.getElementById('quiet').textContent = 'Kattuglerop per natt rundt nyttår (28. des – 3. jan): ' + YEARS.map(y => `${y}/${String(y+1).slice(2)}: ${OWL[y].map(v => v === null ? '–' : v).join(', ')}`).join(' · ') + '. Nyttårsaften er den fjerde verdien i hver rekke. De få ropene der falt før kl. 20 eller etter kl. 04.';
+</script>
+</body>
+</html>

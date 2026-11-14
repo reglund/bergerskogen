@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Fuglene bak huset</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the front door of the collection. Thesis + key numbers, then the red-list ledger with listening status, then the four pages as an index, then method. Same night palette as the rest. */
+:root{
+  --night:#0e1719; --night-2:#142225; --rule:#26393c;
+  --ink:#e8e4d8; --muted:#95a7a1; --faint:#5f726c;
+  --owl:#e2a54c; --moss:#7fb08a; --cut:#c86a4f; --maybe:#d9b45a;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+html{background:var(--night)}
+body{background:var(--night);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:920px;margin:0 auto;padding-block:56px 80px;display:flex;flex-direction:column;gap:64px}
+header,section{display:flex;flex-direction:column;gap:16px}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;line-height:1.05;text-wrap:balance}
+h1{font-size:clamp(48px,10vw,92px)}
+h1 em{color:var(--owl)}
+h2{font-size:clamp(28px,5vw,40px)}
+p{margin:0;max-width:66ch}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 28px;margin-top:8px}
+.fact{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--rule);padding-top:10px}
+.fact b{font-family:var(--display);font-size:42px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.fact span{font-size:13px;color:var(--muted)}
+.fact.owl b{color:var(--owl)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);font-size:15px;vertical-align:middle}
+th{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.num{font-family:var(--mono);font-size:13px;color:var(--muted)}
+tr.grp td{border-bottom:0;padding-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.rl{font-family:var(--mono);font-size:11px;font-weight:500;border-radius:3px;padding:1px 6px;color:var(--night);background:var(--owl)}
+.rl.CR,.rl.EN{background:var(--cut)}
+.pill{font-family:var(--mono);font-size:12px;border-radius:999px;padding:2px 10px;border:1px solid var(--rule);color:var(--muted);white-space:nowrap}
+.pill.ja{background:var(--moss);border-color:var(--moss);color:var(--night)}
+.pill.nei{background:var(--cut);border-color:var(--cut);color:var(--night)}
+.pill.usikker{background:var(--maybe);border-color:var(--maybe);color:var(--night)}
+.pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.page{display:flex;flex-direction:column;gap:8px;padding:18px;border:1px solid var(--rule);border-radius:10px;background:var(--night-2);color:inherit;text-decoration:none;transition:border-color .2s}
+.page:hover,.page:focus-visible{border-color:var(--owl);outline:none}
+.page h3{margin:0;font-family:var(--display);font-weight:500;font-size:28px;line-height:1.1}
+.page .k{font-family:var(--mono);font-size:12px;color:var(--owl)}
+.page p{font-size:14px;color:var(--muted)}
+.page .go{margin-top:auto;font-size:13px;color:var(--ink)}
+.note{border-left:2px solid var(--cut);padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:8px}
+.note b{color:var(--cut)}
+ol.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:66ch}
+footer{font-size:13px;color:var(--faint);border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+ol.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;max-width:70ch}
+ol.tl li{display:grid;grid-template-columns:9.5em 1fr;gap:14px;padding:10px 0;border-top:1px solid var(--rule)}
+ol.tl li span{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:2px}
+ol.tl li.cut span,ol.tl li.cut b{color:var(--cut)}
+@media (max-width:520px){ol.tl li{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <span class="eyebrow">BirdNET-Pi på vestveggen · <span id="span"></span></span>
+  <h1>Fuglene <em>bak huset</em></h1>
+  <p>En mikrofon på husveggen har lyttet til skogen bak huset nesten hver dag og natt siden desember 2022. Skogen er Bergerskogen ved Skjønhaug på Nesodden. Den er hugget i to omganger, og det skal bygges 123 boliger der. Dette er samlingen av det mikrofonen har hørt: hvilke arter som var der, hvilke som er rødlistet, hva som har endret seg, og hva som fortsatt må bekreftes ved lytting.</p>
+  <div class="facts" id="facts"></div>
+</header>
+
+<section>
+  <span class="eyebrow">Rødlistede arter</span>
+  <h2>Hva som er hørt, og hva som er bekreftet</h2>
+  <p class="muted">Rødlistestatus fra Artsdatabanken (rødlista 2021). «Døgn» er antall døgn arten ble hørt med konfidens 0,9 eller mer. Status kommer fra lyttebordet: et funn regnes ikke som sikkert før noen har lyttet på opptaket.</p>
+  <div class="scroll"><table id="rl"></table></div>
+  <p class="muted" id="svar"></p>
+</section>
+
+<section>
+  <span class="eyebrow">Sidene i samlingen</span>
+  <h2>Utforsk dataene</h2>
+  <div class="pages" id="pages"></div>
+</section>
+
+<section>
+  <span class="eyebrow">Skjønhaug, steg for steg</span>
+  <h2>To hogster og en byggeplass</h2>
+  <ol class="tl">
+    <li><span>Jan. 2022</span><p><b>Første hogst.</b> 9 mål skog ved Skjønhaug hugges, med trær opptil 180 år gamle. Mikrofonen var ikke satt opp ennå. (Naturpress, 26.01.2022)</p></li>
+    <li><span>Des. 2022</span><p><b>Mikrofonen starter</b> på husveggen mot Bergerskogen.</p></li>
+    <li><span>Des. 2023</span><p><b>Utbyggingen godkjennes</b> ifølge lokale oppslag: 123 boenheter, butikk og kafé.</p></li>
+    <li class="cut"><span>Vinteren 2024/25</span><p><b>Resten av skogen ryddes trolig.</b> Estimert fra lyden: fuglelivet i hekketida skifter brått, og koret i skumringen krymper. Datoen bekreftes fra byggesaken.</p></li>
+    <li><span>Høsten 2026</span><p><b>Byggestøy.</b> Fuglene «forsvinner» midt på dagen på hverdager.</p></li>
+  </ol>
+  <p class="muted">Mikrofonen kom etter den første hogsten, men har fanget både ryddingen før utbyggingen (estimert: <span id="hogst"></span>) og starten på byggingen.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Veien videre</span>
+  <h2>Fra opptak til dokumentasjon</h2>
+  <ol class="steps">
+    <li>Lytt gjennom klippene på lyttebordet, og bekreft eller avkreft hvert funn.</li>
+    <li>Rapporter bekreftede funn til Artsobservasjoner, så de vises i Artskart der planleggere og konsulenter ser etter.</li>
+    <li>Lag et kort notat til kommunen med før-dataene og de bekreftede funnene.</li>
+    <li>La mikrofonen stå. Etter-dataene fra byggeperioden er like verdifulle som før-dataene.</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Kilde: egne BirdNET-Pi-deteksjoner. Duplikater i samme 3-sekunders klipp er fjernet. Arter som BirdNET bevislig forveksler her, for eksempel kattugle som blir til «perleugle» eller spettmeis som blir til «myrrikse», er holdt utenfor tallene.</span>
+  <span id="built"></span>
+</footer>
+</main>
+<script>const S={"r":{"skogen":{"ugle_netter":803,"ugle_rop":6677,"dager":1311,"stolte":67,"første":"2022-12-21","siste":"2026-11-14"},"kor":{"først":"Gråtrost","først_min":-75,"skumring":{"2023":[-88,40],"2024":[-87,31],"2025":[-57,-1],"2026":[-45,11]}},"nyttar":{"nyttår":4,"tretåspett":27,"snøugle":4},"lytt":{"arter":19,"klipp":86},"samling":{"rødlistede":21,"svar":0},"forogetter":{"par":3,"arter":[[9,10],[9,10],[10,11]]},"eksport":{"arter":219,"trolig_ekte":67}},"rl":[],"svar":0,"bygget":"2026-11-14","hogst":"vinteren 2024/25","skogTotal":7,"uverifisert":14,"lenker":{"Skogen bak huset":"skogen/","Morgenkoret":"morgenkoret/","Før og etter":"for-og-etter/","Nyttårsaften for fuglene":"nyttar/"}};
+const PAGES = [
+  ['Skogen bak huset','https://claude.ai/artifact/X4PMJjwv3shgihfnyL1QXs', r => `${fmt(r.skogen?.ugle_netter)} netter med kattugle`, 'Kattuglas fire år som en spiral, artsrikdom uke for uke, og hvem som forsvant og kom etter hogsten.'],
+  ['Morgenkoret','https://claude.ai/artifact/R8woC4vjCEvnUZLxXUS8KM', r => r.kor ? `${r.kor.først} først, ${Math.abs(r.kor.først_min)} min før soloppgang` : '', 'Spill av en vårmorgen fra mørke til lys, og se rekkefølgen artene stemmer i, år for år.'],
+  ['Før og etter','https://claude.ai/artifact/3AuFzRd8ubHnCAqPAcDSTK', r => r.forogetter ? `${r.forogetter.par} vårmorgener, før og etter` : '', 'Hør samme vårmorgen i 2024 og 2026, og bytt mellom årene mens morgenen spilles.'],
+  ['Lyttebordet','https://claude.ai/artifact/S1BJKXvPJWUpc4ZwmoPdKN', r => r.lytt ? `${r.lytt.klipp} klipp fra ${r.lytt.arter} arter` : '', 'Lytt på opptakene av rødlistede og usikre arter, og bekreft eller avkreft hvert funn.'],
+  ['Nyttårsaften for fuglene','https://claude.ai/artifact/C9oKTqeZqSwmZbssadS2gn', r => r.nyttar ? `${r.nyttar.tretåspett} «tretåspetter» på ${r.nyttar.nyttår} nyttår` : '', 'Fyrverkeri som BirdNET tror er tretåspett og snøugle, med lyd og spektrogram.'],
+];
+const fmt = n => n == null ? '–' : Number(n).toLocaleString('nb-NO');
+const MON = ['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'];
+const fdate = d => { const [y,m,dd] = d.split('-'); return `${+dd}. ${MON[+m-1]} ${y}`; };
+const r = S.r;
+if (r.skogen) document.getElementById('span').textContent = `${fdate(r.skogen.første)} – ${fdate(r.skogen.siste)}`;
+const conf = S.rl.filter(x=>x.v==='ja').length;
+document.getElementById('facts').innerHTML = [
+  [fmt(r.skogen?.dager), 'dager med opptak', ''],
+  [fmt(r.skogen?.ugle_netter), 'netter med kattugle', 'owl'],
+  [fmt(r.skogen?.stolte), 'arter vi stoler på', ''],
+  [`${conf} / ${S.skogTotal ?? S.rl.filter(x=>x.g==='skog').length}`, 'rødlistede skogarter bekreftet', ''],
+].map(([b,s,c])=>`<div class="fact ${c}"><b>${b}</b><span>${s}</span></div>`).join('');
+
+const LBL = {ja:'Bekreftet', nei:'Avkreftet', usikker:'Uavklart', '':'Ikke lyttet'};
+const GRP = {skog:'Kan høre til skogen bak huset', ekte:'Trolig ekte, men ikke knyttet til skogen', feil:'Sannsynlige feilbestemmelser'};
+let html = '<thead><tr><th>Art</th><th>Rødliste</th><th>Døgn ≥ 0,9</th><th>Status</th></tr></thead><tbody>', g = null;
+S.rl.forEach(x => {
+  if (x.g !== g) { g = x.g; html += `<tr class="grp"><td colspan="4">${GRP[g]}</td></tr>`; }
+  html += `<tr><td>${x.n}</td><td><span class="rl ${x.k}">${x.k}</span></td><td class="num">${x.d9}</td><td><span class="pill ${x.v}">${LBL[x.v]}</span></td></tr>`;
+});
+if (!S.rl.length) html += `<tr><td colspan="4" class="num">Ingen rødlistede arter er bekreftet ved lytting ennå.</td></tr>`;
+document.getElementById('rl').innerHTML = html + '</tbody>';
+if (S.uverifisert) document.getElementById('svar').textContent = `${S.uverifisert} rødlistede arter er foreslått av BirdNET og er under verifisering sammen med BirdLife Nesodden. Bare arter som er bekreftet ved lytting, vises her.`;
+else document.getElementById('svar').textContent = S.svar ? `Status er hentet fra ${S.svar} svar på lyttebordet.` : 'Ingen svar fra lyttebordet er hentet ennå. Status oppdateres når siden bygges på nytt.';
+
+const LENKER = S.lenker || null;   // offentlig nettside: tittel -> relativ sti (null = skjul)
+document.getElementById('pages').innerHTML = PAGES.filter(([t]) => !LENKER || LENKER[t]).map(([t,u0,k,d]) => { const u = LENKER ? LENKER[t] : u0; return `<a class="page" href="${u}"${LENKER ? '' : ' target="_blank" rel="noopener"'}><span class="k">${k(r)}</span><h3>${t}</h3><p>${d}</p><span class="go">Åpne →</span></a>`; }).join('');
+document.getElementById('hogst').textContent = S.hogst;
+document.getElementById('built').textContent = `Sist bygget ${fdate(S.bygget)} fra detections.csv med verktoy/bygg.py.`;
+</script>
+</body>
+</html>
