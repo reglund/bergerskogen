@@ -91,15 +91,16 @@ ol.tl li.cut span,ol.tl li.cut b{color:var(--cut)}
 
 <section>
   <span class="eyebrow">Skjønhaug, steg for steg</span>
-  <h2>To hogster og en byggeplass</h2>
+  <h2>Skogen forsvinner i tre runder</h2>
   <ol class="tl">
     <li><span>Jan. 2022</span><p><b>Første hogst.</b> 9 mål skog ved Skjønhaug hugges, med trær opptil 180 år gamle. Mikrofonen var ikke satt opp ennå. (Naturpress, 26.01.2022)</p></li>
     <li><span>Des. 2022</span><p><b>Mikrofonen starter</b> på husveggen mot Bergerskogen.</p></li>
     <li><span>Des. 2023</span><p><b>Utbyggingen godkjennes</b> ifølge lokale oppslag: 123 boenheter, butikk og kafé.</p></li>
     <li class="cut"><span>Vinteren 2024/25</span><p><b>Resten av skogen ryddes trolig.</b> Estimert fra lyden: fuglelivet i hekketida skifter brått, og koret i skumringen krymper. Datoen bekreftes fra byggesaken.</p></li>
+    <li class="cut"><span>Vinteren 2025/26</span><p><b>Småtrær og busker fjernes.</b> Det meste av grana og krattet forsvinner, og bare et par eiker står igjen. Våren etter faller gransangeren fra rundt 27 600 til 3 900 deteksjoner, og grankorsnebben blir borte.</p></li>
     <li><span>Høsten 2026</span><p><b>Byggestøy.</b> Fuglene «forsvinner» midt på dagen på hverdager.</p></li>
   </ol>
-  <p class="muted">Mikrofonen kom etter den første hogsten, men har fanget både ryddingen før utbyggingen (estimert: <span id="hogst"></span>) og starten på byggingen.</p>
+  <p class="muted">Mikrofonen kom etter den første hogsten, men har fanget ryddingen før utbyggingen (estimert: <span id="hogst"></span>), fjerningen av krattet vinteren 2025/26 og starten på byggingen.</p>
 </section>
 
 <section>
@@ -118,7 +119,7 @@ ol.tl li.cut span,ol.tl li.cut b{color:var(--cut)}
   <span id="built"></span>
 </footer>
 </main>
-<script>const S={"r":{"skogen":{"ugle_netter":803,"ugle_rop":6677,"dager":1312,"stolte":67,"første":"2022-12-21","siste":"2026-11-15"},"kor":{"først":"Gråtrost","først_min":-75,"skumring":{"2023":[-88,40],"2024":[-87,31],"2025":[-57,-1],"2026":[-45,11]}},"nyttar":{"nyttår":4,"tretåspett":27,"snøugle":4},"lytt":{"arter":19,"klipp":86},"samling":{"rødlistede":21,"svar":0},"forogetter":{"par":3,"arter":[[9,10],[9,10],[10,11]]},"eksport":{"arter":219,"trolig_ekte":67},"nettside":{"sider":6,"mappe":"/home/art/git/bergerskogen"},"rapport":{"bekreftede_klipp":0,"arter":0,"fil":"eksport/artsobservasjoner.csv"},"lydklokka":{"klipp":1277,"spor":15,"arter":57,"mb":30.7}},"rl":[],"svar":0,"bygget":"2026-11-15","hogst":"vinteren 2024/25","skogTotal":7,"uverifisert":14,"lenker":{"Skogen bak huset":"skogen/","Morgenkoret":"morgenkoret/","Før og etter":"for-og-etter/","Nyttårsaften for fuglene":"nyttar/"}};
+<script>const S={"r":{"skogen":{"ugle_netter":803,"ugle_rop":6677,"dager":1312,"stolte":67,"første":"2022-12-21","siste":"2026-11-15"},"kor":{"først":"Gråtrost","først_min":-75,"skumring":{"2023":[-88,40],"2024":[-87,31],"2025":[-57,-1],"2026":[-45,11]}},"nyttar":{"nyttår":4,"tretåspett":27,"snøugle":4},"lytt":{"arter":19,"klipp":86},"samling":{"rødlistede":21,"svar":0},"forogetter":{"par":3,"arter":[[9,10],[9,10],[10,11]]},"eksport":{"arter":219,"trolig_ekte":67},"nettside":{"sider":5,"mappe":"/home/art/git/bergerskogen"},"rapport":{"bekreftede_klipp":0,"arter":0,"fil":"eksport/artsobservasjoner.csv"},"lydklokka":{"klipp":1277,"spor":15,"arter":57,"mb":30.7}},"rl":[],"svar":0,"bygget":"2026-11-15","hogst":"vinteren 2024/25","skogTotal":7,"uverifisert":14,"lenker":{"Skogen bak huset":"skogen/","Morgenkoret":"morgenkoret/","Før og etter":"for-og-etter/","Nyttårsaften for fuglene":"nyttar/"}};
 const PAGES = [
   ['Skogen bak huset','https://claude.ai/artifact/X4PMJjwv3shgihfnyL1QXs', r => `${fmt(r.skogen?.ugle_netter)} netter med kattugle`, 'Kattuglas fire år som en spiral, artsrikdom uke for uke, og hvem som forsvant og kom etter hogsten.'],
   ['Morgenkoret','https://claude.ai/artifact/R8woC4vjCEvnUZLxXUS8KM', r => r.kor ? `${r.kor.først} først, ${Math.abs(r.kor.først_min)} min før soloppgang` : '', 'Spill av en vårmorgen fra mørke til lys, og se rekkefølgen artene stemmer i, år for år.'],
